@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.media.MediaView?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.Controller">
+    <ImageView >
+        <Image url="/background/background.png"/>
+    </ImageView>
+    <ImageView fitWidth="50" fitHeight="50">
+        <Image url="/image2.gif"/>
+    </ImageView>
+</StackPane>
