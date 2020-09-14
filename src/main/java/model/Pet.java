@@ -1,32 +1,54 @@
 package model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 public class Pet {
-    private String name;
+    private Type type;
     private double satiety;
     private Humor humor;
     private Food food;
-    private GrowthPhase phase;
 
-    public void beBorn() {
-
+    public Pet(Type type)
+    {
+        setType(type);
     }
 
-    public void feed() {
-
+    public Type getType() {
+        return type;
     }
 
-    public void grow() {
-
+    public void setType(Type type) {
+        this.type = type;
     }
 
-    public void move() {
-
+    public double getSatiety() {
+        return satiety;
     }
 
-    public void changeMood() {
+    public void setSatiety(double satiety) {
+        this.satiety = satiety;
+    }
 
+    public Humor getHumor() {
+        return humor;
+    }
+
+    public void setHumor(Humor humor) {
+        this.humor = humor;
+    }
+
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
+    }
+
+    @Override
+    public String toString() {
+        return type.getTitle();
     }
 }
