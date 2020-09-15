@@ -21,6 +21,8 @@ public class Main extends Application {
         loader.setLocation(getClass().getResource(Data.MENU_VIEW));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Тамагочи");
         primaryStage.show();
     }
 }

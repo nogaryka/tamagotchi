@@ -1,32 +1,32 @@
 package controller;
 
 import data.Data;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import main.Main;
+import javafx.scene.control.SelectionMode;
 import model.Pet;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ChoosePetController {
     @FXML
-    private ListView listView_listPets;
+    private ListView<Pet> listView_listPets;
+
+    @FXML
+    private Label label;
+    @FXML
+    private Button accept;
 
     @FXML
     private void initialize() {
         listView_listPets.setItems(FXCollections.observableArrayList(Data.listPets));
+        listView_listPets.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        listView_listPets.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> label.setText(newValue.toString()));
     }
 
-    @FXML
+    /*@FXML
     private void onMouseClicked() {
         Parent root = null;
         try {
@@ -36,5 +36,5 @@ public class ChoosePetController {
         }
         Main.primaryStage.setScene(new Scene(root));
         Main.primaryStage.show();
-    }
+    }*/
 }

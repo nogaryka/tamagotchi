@@ -6,12 +6,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.MenuController"
-            prefHeight="400.0" prefWidth="600.0"
-            alignment="BASELINE_CENTER"
-            orientation="VERTICAL">
+<FlowPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+          fx:controller="controller.MenuController"
+          prefWidth="200" prefHeight="200"
+          alignment="CENTER"
+          orientation="VERTICAL"
+          vgap="30">
 
     <Button fx:id="button_newGame" text="Новая игра" onAction="#startNewGame"/>
     <Button fx:id="button_continueGame"  text="Продолжить"/>

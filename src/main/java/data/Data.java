@@ -1,6 +1,7 @@
 package data;
 
 import model.Pet;
+import model.Type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,9 @@ public final class Data {
     public final static List<Pet> listPets = new ArrayList<Pet>();
     static
     {
-        Pet dragor = new Pet("Dragon");
-        listPets.add(dragor);
+        Pet dragon = new Pet(Type.DRAGON);
+        Pet bear = new Pet(Type.BEAR);
+        listPets.add(dragon);
+        listPets.add(bear);
     }
 }

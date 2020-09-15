@@ -1,7 +1,8 @@
 package model;
 
 public enum Type {
-    DRAGON("Дракон");
+    DRAGON("Дракон"),
+    BEAR("Медведь");
 
     private String title;
     Type(String title) {
