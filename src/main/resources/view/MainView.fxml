@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?language javascript?>
 
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,21 +6,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.media.MediaView?>
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<BorderPane xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="controller.MainController">
-
-
-
-
-<!--    <ImageView>
-        <Image url="/background/background.png"/>
-    </ImageView>
-    <ImageView fitWidth="50" fitHeight="50">
-        <Image url="/image2.gif"/>
-    </ImageView>-->
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.MainController">
+    <top>
+        <FlowPane prefHeight="20" hgap="30">
+            <Label text="Настроение питомца" />
+            <Label fx:id="label_humorStatus"/>
+            <Label text="Сытость питомца"/>
+            <Label fx:id="label_satietyStatus"/>
+        </FlowPane>
+    </top>
+    <center>
+       <StackPane>
+           <ImageView fx:id="imageView_viewPet" fitHeight="400" fitWidth="600">
+           </ImageView>
+       </StackPane>
+    </center>
+    <bottom>
+        <HBox>
+            <Button fx:id="button_feed" text="Покормить" onAction="#feed"/>
+            <ComboBox fx:id="comboBox_foodList"/>
+            <Button fx:id="button_logOff" text="Выйти" onAction="#logOff"/>
+        </HBox>
+    </bottom>
 </BorderPane>

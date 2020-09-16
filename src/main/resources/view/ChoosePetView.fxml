@@ -15,7 +15,7 @@
     <ListView fx:id="listView_listPets" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2" />
     <Label text="Выбранный питомец:" GridPane.columnIndex="0" GridPane.rowIndex="0"  GridPane.valignment="BOTTOM" GridPane.halignment="CENTER"/>
     <VBox GridPane.columnIndex="0" GridPane.rowIndex="1"  GridPane.valignment="TOP" GridPane.halignment="CENTER" alignment="TOP_CENTER">
-        <Label fx:id="label"/>
-        <Button fx:id="accept" text="Подтвердить!"/>
+        <Label fx:id="label_chosenPet"/>
+        <Button fx:id="button_accept" text="Подтвердить!" onAction="#accept"/>
     </VBox>
 </GridPane>

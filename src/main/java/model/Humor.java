@@ -1,10 +1,14 @@
 package model;
 
 import data.Data;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
-public enum Humor {
+public enum Humor  implements Serializable {
     GREAT(Data.GREAT),
     GOOD(Data.GOOD),
     NORMAL(Data.NORMAL),
@@ -18,16 +22,20 @@ public enum Humor {
         this.title = title;
     }
 
-    public static Humor getHumor(double satiety) {
-        Humor humor;
-        switch ((int) Math.ceil(satiety / 10))
+    public String getTitle() {
+        return title;
+    }
+
+    public static StringProperty getHumor(double satiety) {
+        StringProperty humor = new SimpleStringProperty();
+        switch ((int) Math.ceil(satiety / 20))
         {
-            case 5: humor = Humor.GREAT;
-            case 4: humor = Humor.GOOD;
-            case 3: humor = Humor.NORMAL;
-            case 2: humor = Humor.BAD;
-            case 1: humor = Humor.HORRIBLE;
-            default: humor = Humor.NOT_FOUND;
+            case 5: humor.setValue(Humor.GREAT.getTitle()); break;
+            case 4: humor.setValue( Humor.GOOD.getTitle()); break;
+            case 3: humor.setValue(Humor.NORMAL.getTitle()); break;
+            case 2: humor.setValue(Humor.BAD.getTitle()); break;
+            case 1: humor.setValue(Humor.HORRIBLE.getTitle()); break;
+            default: humor.setValue(Humor.NOT_FOUND.getTitle());
         };
         return humor;
     }

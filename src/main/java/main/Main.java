@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Pet;
 
 public class Main extends Application {
 
@@ -14,6 +15,8 @@ public class Main extends Application {
     }
 
     public static Stage primaryStage;
+    public static Pet pet;
+    public static String pathToPetImage;
 
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;

@@ -14,6 +14,6 @@
           vgap="30">
 
     <Button fx:id="button_newGame" text="Новая игра" onAction="#startNewGame"/>
-    <Button fx:id="button_continueGame"  text="Продолжить"/>
-    <Button fx:id="button_ExitGame"  text="Выход"/>
+    <Button fx:id="button_continueGame"  text="Продолжить" onAction="#continueGame"/>
+    <Button fx:id="button_ExitGame"  text="Выход" />
 </FlowPane>

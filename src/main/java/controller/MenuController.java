@@ -7,8 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import main.Main;
+import model.Pet;
 
-import java.io.IOException;
+import java.io.*;
 
 public class MenuController {
 
@@ -25,5 +26,13 @@ public class MenuController {
         Main.primaryStage.show();
     }
 
-
+    @FXML
+    private void continueGame(){
+        Pet pet;
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Data.PATH_TO_LOAD_FILE))) {
+            pet = (Pet) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

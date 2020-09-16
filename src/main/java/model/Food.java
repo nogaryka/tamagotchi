@@ -3,8 +3,10 @@ package model;
 import data.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
-public enum Food {
+public enum Food  implements Serializable {
     MEAT(Data.MEAT);
 
     private final String title;
@@ -13,4 +15,7 @@ public enum Food {
         this.title = title;
     }
 
+    public String getTitle() {
+        return title;
+    }
 }

@@ -1,8 +1,12 @@
 package model;
 
-public enum Type {
-    DRAGON("Дракон"),
-    BEAR("Медведь");
+import data.Data;
+
+import java.io.Serializable;
+
+public enum Type implements Serializable {
+    DRAGON(Data.DRAGON),
+    BEAR(Data.BEAR);
 
     private String title;
     Type(String title) {
