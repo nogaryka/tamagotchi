@@ -1,23 +1,26 @@
 package controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import data.Data;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.Main;
 import model.Food;
 
-import java.io.*;
-import java.util.ArrayList;
+import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class MainController {
@@ -42,14 +45,34 @@ public class MainController {
         imageView_viewPet.setImage(new Image(Main.pathToPetImage));
         label_satietyStatus.textProperty().bind(Main.pet.getSatiety().asString());
         label_humorStatus.textProperty().bind(Main.pet.getHumor());
+        long delayAndPeriod = 60 / Main.pet.getCatabolismRatePerMinute();
+        Data.statDecay.scheduleAtFixedRate(Main.pet, delayAndPeriod, delayAndPeriod, TimeUnit.SECONDS);
     }
 
     @FXML
     public void feed() {
+        if (comboBox_foodList.getSelectionModel().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Нужно выбрать еду для ващего питомца");
+            return;
+        }
         Main.pet.eat(comboBox_foodList.getSelectionModel().getSelectedItem().toString());
     }
 
     @FXML
-    public void logOff() {
+    public void logOff() throws JsonProcessingException {
+        String jsonPet = Data.objectMapper.writeValueAsString(Main.pet);
+        //Data.saveDate = Date.
+        String jsonCurrentDateTime = Data.objectMapper.writeValueAsString(LocalDateTime.now());
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(Data.PATH_TO_LOAD_FILE))) {
+            bw.write(jsonPet);
+            bw.newLine();
+            bw.write(jsonCurrentDateTime);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Main.exit();
     }
 }

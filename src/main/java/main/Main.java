@@ -1,7 +1,11 @@
 package main;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import controller.MainController;
 import data.Data;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,5 +31,14 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setTitle("Тамагочи");
         primaryStage.show();
+        Platform.setImplicitExit(true);
+        primaryStage.setOnCloseRequest(e -> {
+            exit();
+        });
+    }
+
+    public static void exit() {
+        Data.statDecay.shutdown();
+        Platform.exit();
     }
 }

@@ -1,13 +1,16 @@
 package data;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import model.Food;
-import model.Pet;
 import model.Type;
+import utils.CustomDateSerializer;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public final class Data {
     //Enum values
@@ -28,7 +31,7 @@ public final class Data {
     public final static String CHOOSE_PET_VIEW = "/view/ChoosePetView.fxml";
     public final static String MENU_VIEW = "/view/MenuView.fxml";
     // Path to load file
-    public final static String PATH_TO_LOAD_FILE = "/loadFiles/savePet.txt";
+    public final static String PATH_TO_LOAD_FILE = "src/main/resources/load/savePet.txt";
     // Path to pet images
     public final static String PATH_TO_THE_DRAGON_IMAGE = "/image/dragon.jpg";
     public final static Map<Type, String> PATH_LIST = new HashMap<>();
@@ -39,4 +42,8 @@ public final class Data {
     static {
         PET_FOOD_LIST.put(Type.DRAGON, Food.MEAT);
     }
+    public final static ScheduledExecutorService statDecay = Executors.newSingleThreadScheduledExecutor();
+    public final static ObjectMapper objectMapper = new ObjectMapper();
+    @JsonSerialize(using = CustomDateSerializer.class)
+    public static Date saveDate;
 }

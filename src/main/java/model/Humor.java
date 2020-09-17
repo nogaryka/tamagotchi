@@ -26,8 +26,7 @@ public enum Humor  implements Serializable {
         return title;
     }
 
-    public static StringProperty getHumor(double satiety) {
-        StringProperty humor = new SimpleStringProperty();
+    public static void getHumor(double satiety, StringProperty humor) {
         switch ((int) Math.ceil(satiety / 20))
         {
             case 5: humor.setValue(Humor.GREAT.getTitle()); break;
@@ -37,6 +36,5 @@ public enum Humor  implements Serializable {
             case 1: humor.setValue(Humor.HORRIBLE.getTitle()); break;
             default: humor.setValue(Humor.NOT_FOUND.getTitle());
         };
-        return humor;
     }
 }

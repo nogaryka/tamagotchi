@@ -1,27 +1,39 @@
 package model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import data.Data;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import lombok.Getter;
-import lombok.Setter;
+import utils.PetDeserializer;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class Pet implements Serializable {
+@JsonDeserialize(using = PetDeserializer.class)
+public class Pet implements Runnable, Serializable {
     private Type type;
     private IntegerProperty satiety = new SimpleIntegerProperty(50);
     private StringProperty humor = new SimpleStringProperty(Humor.NORMAL.getTitle());
     private Food food;
+    private int catabolismRatePerMinute = 4;
 
-    public Pet(String type)
-    {
+    public Pet(String type) {
         setType(type);
         setFood(this.type);
+    }
+
+    public Pet(Type type, IntegerProperty satiety, StringProperty humor, Food food, int catabolismRatePerMinute) {
+        this.type = type;
+        this.satiety = satiety;
+        this.humor = humor;
+        this.food = food;
+        this.catabolismRatePerMinute = catabolismRatePerMinute;
+    }
+
+    public Pet() {
     }
 
     public Type getType() {
@@ -30,27 +42,11 @@ public class Pet implements Serializable {
 
     public void setType(String type) {
         Arrays.stream(Type.values()).forEach(x -> {
-            if(x.getTitle().equals(type))
-            {
+            if (x.getTitle().equals(type)) {
                 this.type = x;
             }
         });
     }
-
-   /* public int getSatiety() {
-        return satiety;
-    }
-
-    public void setSatiety(int satiety) {
-        int tempSatiety = this.satiety + satiety;
-        if(tempSatiety > 100) {
-            this.satiety = 100;
-        } else if (tempSatiety < 0) {
-            this.satiety = 0;
-        } else {
-            this.satiety += satiety;
-        }
-    }*/
 
     public IntegerProperty getSatiety() {
         return satiety;
@@ -58,7 +54,7 @@ public class Pet implements Serializable {
 
     public void setSatiety(int satiety) {
         IntegerProperty tempSatiety = new SimpleIntegerProperty(this.satiety.get() + satiety);
-        if(tempSatiety.get() > 100) {
+        if (tempSatiety.get() > 100) {
             this.satiety.setValue(100);
         } else if (tempSatiety.get() < 0) {
             this.satiety.setValue(0);
@@ -69,6 +65,10 @@ public class Pet implements Serializable {
 
     public StringProperty getHumor() {
         return humor;
+    }
+
+    public int getCatabolismRatePerMinute() {
+        return catabolismRatePerMinute;
     }
 
     public void setHumor(StringProperty humor) {
@@ -86,25 +86,32 @@ public class Pet implements Serializable {
     public void eat(String foodString) {
         final Food foods;
         Arrays.stream(Food.values()).forEach(x -> {
-            if(x.getTitle().equals(foodString))
-            {
+            if (x.getTitle().equals(foodString)) {
                 food = x;
             }
         });
 
-        if (food == this.food)
-        {
+        if (food == this.food) {
             setSatiety(20);
-        }
-        else
-        {
+        } else {
             setSatiety(-10);
         }
-        humor = Humor.getHumor(satiety.get());
+        Humor.getHumor(satiety.get(), humor);
+    }
+
+    public void catabolism() {
+        if (satiety.get() != 0) {
+            setSatiety(-1);
+        }
     }
 
     @Override
     public String toString() {
         return type.getTitle();
+    }
+
+    @Override
+    public void run() {
+        Platform.runLater(() -> catabolism());
     }
 }
