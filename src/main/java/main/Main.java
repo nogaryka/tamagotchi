@@ -6,9 +6,12 @@ import controller.MainController;
 import data.Data;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Pet;
 
@@ -20,7 +23,7 @@ public class Main extends Application {
 
     public static Stage primaryStage;
     public static Pet pet;
-    public static String pathToPetImage;
+    public static ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
 
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;

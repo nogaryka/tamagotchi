@@ -4,9 +4,10 @@ import data.Data;
 
 import java.io.Serializable;
 
-public enum Type implements Serializable {
+public enum Type {
     DRAGON(Data.DRAGON),
-    BEAR(Data.BEAR);
+    BEAR(Data.BEAR),
+    CORPSE(Data.CORPSE);
 
     private String title;
     Type(String title) {

@@ -1,0 +1,5 @@
+mvn clean package
+cd ./target
+java -jar tamagotchi-1.0-SNAPSHOT.jar
+
+Питомцы голодают на 4 единицы в минуту.

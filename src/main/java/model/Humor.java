@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 @Getter
-public enum Humor  implements Serializable {
+public enum Humor {
     GREAT(Data.GREAT),
     GOOD(Data.GOOD),
     NORMAL(Data.NORMAL),

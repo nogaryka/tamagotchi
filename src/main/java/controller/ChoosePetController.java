@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.image.Image;
 import jdk.nashorn.internal.objects.ArrayBufferView;
 import main.Main;
 import model.Pet;
@@ -50,7 +51,7 @@ public class ChoosePetController {
         }
         Parent root = null;
         Main.pet = new Pet(label_chosenPet.getText());
-        Main.pathToPetImage = Data.PATH_LIST.get(Main.pet.getType());
+        Main.imageProperty.setValue(new Image(Data.PATH_LIST.get(Main.pet.getType())));
         try {
             root = FXMLLoader.load(getClass().getResource(Data.MAIN_VIEW));
         } catch (IOException e) {

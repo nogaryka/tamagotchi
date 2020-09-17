@@ -14,6 +14,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 
 public class MenuController {
@@ -38,14 +40,13 @@ public class MenuController {
         try(BufferedReader br = new BufferedReader(new FileReader(Data.PATH_TO_LOAD_FILE))) {
             jsonPet = br.readLine();
             jsonLastDateTime = br.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         Main.pet = Data.objectMapper.readValue(jsonPet, Pet.class);
-        Calendar lastDate = Data.objectMapper.readValue(jsonLastDateTime, Calendar.class);
-        long cout = (Calendar.getInstance().getTimeInMillis() - lastDate.getTimeInMillis()) * 1000;
+        LocalDateTime lastDate = Data.objectMapper.readValue(jsonLastDateTime, LocalDateTime.class);
+        long count = ChronoUnit.MINUTES.between(lastDate, LocalDateTime.now());
+        Main.pet.setSatiety(count * Main.pet.getCatabolismRatePerMinute());
     }
 
     @FXML

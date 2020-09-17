@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 @Getter
-public enum Food  implements Serializable {
+public enum Food {
     MEAT(Data.MEAT);
 
     private final String title;
