@@ -1,2 +1,2 @@
-{"type":"SNAKE","satiety":{"value":49,"bean":null,"name":"","bound":false},"humor":{"value":"Нормальное","bean":null,"name":"","bound":false,"valueSafe":"Нормальное"},"food":"MOUSE","catabolismRatePerMinute":10}
-[2020,9,18,10,39,28,754000000]
+{"type":"CORPSE","satiety":{"value":0,"bean":null,"name":"","bound":false},"humor":{"value":"Уже не важно","bean":null,"name":"","bound":false,"valueSafe":"Уже не важно"},"food":"MEAT","catabolismRatePerMinute":10}
+[2020,9,18,11,46,8,164000000]

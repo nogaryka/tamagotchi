@@ -7,22 +7,49 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import main.Main;
 import model.Pet;
+import model.Type;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 public class MenuController {
 
     @FXML
-    private void startNewGame(ActionEvent event) {
+    private void startNewGame(ActionEvent event) throws JsonProcessingException {
+        String lastDateToJson = null;
+        String petToJson = null;
+        File file = new File(Data.PATH_TO_LOAD_FILE);
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            if(file.length() == 0) {
+                Main.createStage(Data.CHOOSE_PET_VIEW);
+                return;
+            }
+            petToJson = br.readLine();
+            lastDateToJson = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Pet pet =  Data.objectMapper.readValue(Objects.requireNonNull(petToJson), Pet.class);
+        LocalDateTime lastDate = Data.objectMapper.readValue(Objects.requireNonNull(lastDateToJson), LocalDateTime.class);
+        long count = ChronoUnit.MINUTES.between(lastDate, LocalDateTime.now());
+        if(pet.getType() == Type.CORPSE && count < 5)
+        {
+            JOptionPane.showMessageDialog(null, "Вы еще оплакиваете своего старого питомца");
+            return;
+        }
         Main.createStage(Data.CHOOSE_PET_VIEW);
     }
 
     @FXML
     private void continueGame() throws JsonProcessingException {
+        File file = new File(Data.PATH_TO_LOAD_FILE);
+        if(file.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Нет сохраненного питомца");
+            return;
+        }
         String saveData = Main.load();
         Main.pet = Data.objectMapper.readValue(saveData.split("#")[0], Pet.class);
         LocalDateTime lastDate = Data.objectMapper.readValue(saveData.split("#")[1], LocalDateTime.class);
