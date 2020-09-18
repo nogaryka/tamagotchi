@@ -2,14 +2,14 @@ package model;
 
 import data.Data;
 
-import java.io.Serializable;
-
 public enum Type {
     DRAGON(Data.DRAGON),
     BEAR(Data.BEAR),
-    CORPSE(Data.CORPSE);
+    CORPSE(Data.CORPSE),
+    SNAKE(Data.SNAKE);
 
     private String title;
+
     Type(String title) {
         this.title = title;
     }

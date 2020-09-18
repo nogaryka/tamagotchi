@@ -1,2 +1,2 @@
-{"type":"DRAGON","satiety":{"value":50,"bean":null,"name":"","bound":false},"humor":{"value":"Нормальное","bean":null,"name":"","bound":false,"valueSafe":"Нормальное"},"food":"MEAT","catabolismRatePerMinute":4}
-[2020,9,17,21,39,19,716000000]
+{"type":"SNAKE","satiety":{"value":49,"bean":null,"name":"","bound":false},"humor":{"value":"Нормальное","bean":null,"name":"","bound":false,"valueSafe":"Нормальное"},"food":"MOUSE","catabolismRatePerMinute":10}
+[2020,9,18,10,39,28,754000000]

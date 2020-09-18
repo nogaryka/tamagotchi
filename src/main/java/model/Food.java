@@ -1,13 +1,11 @@
 package model;
 
 import data.Data;
-import lombok.Getter;
 
-import java.io.Serializable;
-
-@Getter
 public enum Food {
-    MEAT(Data.MEAT);
+    MEAT(Data.MEAT),
+    MOUSE(Data.MOUSE),
+    FISH(Data.FISH);
 
     private final String title;
 

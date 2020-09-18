@@ -1,12 +1,10 @@
 package data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import model.Food;
 import model.Type;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
@@ -20,12 +18,15 @@ public final class Data {
     public final static String NORMAL = "Нормальное";
     public final static String BAD = "Плохое";
     public final static String HORRIBLE = "Ужасное";
-    public final static String NOT_FOUND= "Уже не важно";
+    public final static String NOT_FOUND = "Уже не важно";
     //For food
-    public final static String MEAT= "Мясо";
+    public final static String MEAT = "Мясо";
+    public final static String MOUSE = "Мышь";
+    public final static String FISH = "Рыба";
     //For type
     public final static String DRAGON = "Дракон";
-    public final static String BEAR= "Медведь";
+    public final static String BEAR = "Медведь";
+    public final static String SNAKE = "Змея";
     public final static String CORPSE = "Мертвец";
     //Paths to fxml schemas
     public final static String MAIN_VIEW = "/view/MainView.fxml";
@@ -36,15 +37,25 @@ public final class Data {
     // Path to pet images
     public final static String PATH_TO_THE_DRAGON_IMAGE = "/image/dragon.jpg";
     public final static String PATH_TO_THE_CORPSE_IMAGE = "/image/corpse.jpg";
+    public final static String PATH_TO_THE_BEAR_IMAGE = "/image/bear.jpg";
+    public final static String PATH_TO_THE_SNAKE_IMAGE = "/image/snake.jpg";
     public final static Map<Type, String> PATH_LIST = new HashMap<>();
+
     static {
         PATH_LIST.put(Type.DRAGON, PATH_TO_THE_DRAGON_IMAGE);
         PATH_LIST.put(Type.CORPSE, PATH_TO_THE_CORPSE_IMAGE);
+        PATH_LIST.put(Type.BEAR, PATH_TO_THE_BEAR_IMAGE);
+        PATH_LIST.put(Type.SNAKE, PATH_TO_THE_SNAKE_IMAGE);
     }
+
     public final static Map<Type, Food> PET_FOOD_LIST = new HashMap<>();
+
     static {
         PET_FOOD_LIST.put(Type.DRAGON, Food.MEAT);
+        PET_FOOD_LIST.put(Type.BEAR, Food.FISH);
+        PET_FOOD_LIST.put(Type.SNAKE, Food.MOUSE);
     }
+
     public final static ScheduledExecutorService statDecay = Executors.newSingleThreadScheduledExecutor();
     public final static ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 }

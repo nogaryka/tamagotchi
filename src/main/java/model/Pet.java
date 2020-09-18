@@ -11,16 +11,15 @@ import javafx.scene.image.Image;
 import main.Main;
 import utils.PetDeserializer;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 @JsonDeserialize(using = PetDeserializer.class)
 public class Pet implements Runnable {
     private Type type;
-    private IntegerProperty satiety = new SimpleIntegerProperty(1);
+    private IntegerProperty satiety = new SimpleIntegerProperty(50);
     private StringProperty humor = new SimpleStringProperty(Humor.NORMAL.getTitle());
     private Food food;
-    private int catabolismRatePerMinute = 4;
+    private int catabolismRatePerMinute = 10;
 
     public Pet(String type) {
         setType(type);
@@ -64,10 +63,11 @@ public class Pet implements Runnable {
             } else {
                 this.satiety.setValue(this.satiety.get() + satiety);
             }
-        }
-        else {
-            die();
+        } else {
             this.satiety.setValue(0);
+        }
+        if (getSatiety().get() == 0) {
+            die();
         }
         Humor.getHumor(this.satiety.get(), humor);
     }
